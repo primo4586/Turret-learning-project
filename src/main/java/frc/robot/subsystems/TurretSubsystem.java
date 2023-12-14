@@ -9,34 +9,33 @@ import com.ctre.phoenix6.configs.MotionMagicConfigs;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.controls.MotionMagicVoltage;
 import com.ctre.phoenix6.hardware.TalonFX;
-
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
+import static frc.robot.Constants.turret.*;
 
 public class TurretSubsystem extends SubsystemBase {
   private final MotionMagicVoltage motionMagic = new MotionMagicVoltage(0);
   private TalonFX motor;
 
-
+  
   public TurretSubsystem() {
-    this.motor = new TalonFX(Constants.turretConstans.KMotorID);
+    this.motor = new TalonFX(KMotorID);
 
     TalonFXConfiguration configs = new TalonFXConfiguration();
     MotionMagicConfigs mm = new MotionMagicConfigs();
 
-    mm.MotionMagicCruiseVelocity = Constants.turretConstans.mmVelocity;
-    mm.MotionMagicAcceleration = Constants.turretConstans.mmAcceleration;
-    mm.MotionMagicJerk = Constants.turretConstans.mmJerk;
+    mm.MotionMagicCruiseVelocity = mmVelocity;
+    mm.MotionMagicAcceleration = mmAcceleration;
+    mm.MotionMagicJerk = mmJerk;
     configs.MotionMagic = mm;
 
-    configs.Slot0.kP =  Constants.turretConstans.KP;
-    configs.Slot0.kD =  Constants.turretConstans.KD;
-    configs.Slot0.kV =  Constants.turretConstans.KV;
-    configs.Slot0.kS =  Constants.turretConstans.KS;
+    configs.Slot0.kP = KP;
+    configs.Slot0.kD = KD;
+    configs.Slot0.kV = KV;
+    configs.Slot0.kS = KS;
 
-    configs.Voltage.PeakForwardVoltage = Constants.turretConstans.PeakForwardVoltage;
-    configs.Voltage.PeakReverseVoltage = Constants.turretConstans.PeakReverseVoltage;
-    configs.Feedback.SensorToMechanismRatio = Constants.turretConstans.SensorToMechanismRatio;
+    configs.Voltage.PeakForwardVoltage = PeakForwardVoltage;
+    configs.Voltage.PeakReverseVoltage = PeakReverseVoltage;
+    configs.Feedback.SensorToMechanismRatio = SensorToMechanismRatio;
 
         // gives code to TalonFX
     StatusCode status = StatusCode.StatusCodeNotInitialized;
@@ -53,10 +52,34 @@ public class TurretSubsystem extends SubsystemBase {
       //make sure we start at 0.
       motor.setPosition(0);
     }
+
+    public static TurretSubsystem instance;
+    // singleton
+    public static TurretSubsystem getInstance(){
+      if (instance == null){
+        instance = new TurretSubsystem();
+      }
+      return instance;
+    }
+
+    // moves the turret to one place
+    public void putTurretInPlace(double place){
+      motor.setControl(motionMagic.withPosition(place));
+    }
+    //get turret position
+    public double getPostionTurret(){
+      return this.motor.getPosition().getValue();
+    }
+    // checks if the turret is in the right position
+    public boolean checkTurretPosition(double place){
+      if (this.motor.getPosition().getValue() == place){
+        return true;
+      }
+      return false;
+    }
+
+
     
-
-
-
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
