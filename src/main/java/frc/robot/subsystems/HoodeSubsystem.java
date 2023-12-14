@@ -20,8 +20,9 @@ import frc.robot.Constants.PdConstants;
 public class HoodeSubsystem extends SubsystemBase {
   /** Creates a new Hoode. */
 
-  //created the motor and the MM
+  //created the motor,MM, and the hoode deg it's needs to be
   private TalonFX m_hoode;
+  private double hoodeDeg;
   private final MotionMagicVoltage m_PositionVoltage = new MotionMagicVoltage(0);
 
   //the instance
@@ -37,6 +38,7 @@ public class HoodeSubsystem extends SubsystemBase {
   //Constractor
   public HoodeSubsystem() {
      this.m_hoode = new TalonFX(Constants.HoodeConstants.HoodePort);
+     hoodeDeg = 0;
 
     //creat the full MotionMagic
     TalonFXConfiguration configuration = new TalonFXConfiguration();
@@ -70,8 +72,6 @@ public class HoodeSubsystem extends SubsystemBase {
 
       m_hoode.setPosition(0);
   }
-
-  
 
 
   @Override
