@@ -16,4 +16,26 @@ public final class Constants {
   public static class OperatorConstants {
     public static final int kDriverControllerPort = 0;
   }
+
+  public static class HoodeConstants{
+    public static final int HoodePort = 1;
+  }
+
+
+  public static class PdConstants{
+    public static final double mmc = 5;
+    public static final double mma = 10;
+    public static final double mmj = 50;
+
+    public static final double kp = 24;
+    public static final double ks = 24;
+    public static final double ka = 24;
+    public static final double kv = 24;
+  }
+
+  public static class MaxVolConstants{
+    public static final double peekRvol = -11.5;
+    public static final double peekFvol = 11.5;
+
+  }
 }
