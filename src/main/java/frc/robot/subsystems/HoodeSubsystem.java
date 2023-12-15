@@ -73,6 +73,11 @@ public class HoodeSubsystem extends SubsystemBase {
       m_hoode.setPosition(0);
   }
 
+  
+  public double getPosHoode(){
+    return this.hoodeDeg;
+  }
+
 
   @Override
   public void periodic() {
