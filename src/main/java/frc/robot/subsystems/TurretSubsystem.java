@@ -61,21 +61,25 @@ public class TurretSubsystem extends SubsystemBase {
     }
 
     // moves the turret to one place
-    public void putTurretInPlace(double place){
-      motor.setControl(motionMagic.withPosition(place));
+    public void putTurretInPlace(double pose){
+      motor.setControl(motionMagic.withPosition(pose));
     }
     //get turret position
-    public double getPostionTurret(){ // TODO: understand what ori is saying 
+    public double getPostionTurret(){
       return this.motor.getPosition().getValue();
     }
     // checks if the turret is in the right position
-    public boolean checkTurretPosition(double place){
-      if (this.motor.getPosition().getValue() == place){
+    public boolean checkTurretPosition(){
+      if (Math.abs(motor.getClosedLoopError().getValue()) < minimumError){
         return true;
       }
       return false;
     }
-    // TODO: add a manual turn for the turret
+    //manual turn for the turret
+    public void manualTurnForTurret(int vector){ // vector is 1/-1
+      this.motor.set(vector*turretTurnSpeed);
+    }
+
 
 
 

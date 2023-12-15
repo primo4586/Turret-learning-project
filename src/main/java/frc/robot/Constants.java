@@ -26,13 +26,15 @@ public static class turret{ //TODO: give good nums!
     public static final double KD = 0.1;
     public static final double KV = 0.12;
     public static final double KS = 0.25;
-
-    public static final double minimumMistake = 30;
-    public static final double minimumTime = 10;
+    //not mm
+    public static final double minimumError = 30;
+    public static final double minimumTimeForTurret = 10;
 
     public static final double PeakForwardVoltage = 11.5;
     public static final double PeakReverseVoltage = -11.5;
     public static final double SensorToMechanismRatio = 50;
+
+    public static final double turretTurnSpeed = 0.5; // TODO: give good nums also 
   }
   public static class OperatorConstants {
     public static final int kDriverControllerPort = 0;
