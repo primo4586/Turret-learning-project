@@ -41,5 +41,10 @@ public final class Constants {
     //MaxVol Constant
     public static final double peekRvol = -11.5;
     public static final double peekFvol = 11.5;
+
+    //Constant limit values 
+    public static final double forwardLimit = 300;
+    public static final double backwordLimit = 300;
+
   }
 }

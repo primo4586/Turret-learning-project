@@ -56,6 +56,13 @@ public class HoodSubsystem extends SubsystemBase {
     configuration.Voltage.PeakForwardVoltage = peekFvol;
     configuration.Voltage.PeakReverseVoltage = peekRvol;
 
+    //forward and backword limits
+    configuration.SoftwareLimitSwitch.ForwardSoftLimitEnable = true;
+    configuration.SoftwareLimitSwitch.ForwardSoftLimitThreshold = forwardLimit;
+    configuration.SoftwareLimitSwitch.ReverseSoftLimitEnable = true;
+    configuration.SoftwareLimitSwitch.ReverseSoftLimitThreshold = backwordLimit;
+
+
     // set Ratio to 50:1
     configuration.Feedback.SensorToMechanismRatio = TICKS_PER_DEGREE;
 
