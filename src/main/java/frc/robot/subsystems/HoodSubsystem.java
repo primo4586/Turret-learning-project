@@ -85,6 +85,10 @@ public class HoodSubsystem extends SubsystemBase {
   }
   
 
+  public boolean isHoodReady() {
+    return Math.abs(getHoodPose() - hoodDeg) <= READY_DEG_TOLERANCE;
+  }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
