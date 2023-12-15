@@ -15,16 +15,15 @@ import com.ctre.phoenix6.signals.ControlModeValue;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-import frc.robot.Constants.PdConstants;
 import static frc.robot.Constants.HoodConstants.*;
 
 public class HoodSubsystem extends SubsystemBase {
   /** Creates a new Hood. */
 
-  // created the motor,MM, and the hood deg it's needs to be
+  // created the motor and MotionMagic
   private TalonFX m_hood;
-  private double hoodDeg;
-  private final MotionMagicVoltage m_PositionVoltage = new MotionMagicVoltage(0);
+  private double hoodDeg;//the degrees the hood needs to be
+  private final MotionMagicVoltage motionMagic = new MotionMagicVoltage(0);
 
   // the instance
   public static HoodSubsystem instance;
@@ -45,21 +44,21 @@ public class HoodSubsystem extends SubsystemBase {
     TalonFXConfiguration configuration = new TalonFXConfiguration();
     MotionMagicConfigs mm = new MotionMagicConfigs();
 
-    mm.MotionMagicCruiseVelocity = PdConstants.mmc;
-    mm.MotionMagicAcceleration = PdConstants.mma;
-    mm.MotionMagicJerk = PdConstants.mmj;
+    mm.MotionMagicCruiseVelocity = mmc;
+    mm.MotionMagicAcceleration = mma;
+    mm.MotionMagicJerk = mmj;
     configuration.MotionMagic = mm;
 
-    configuration.Slot0.kP = PdConstants.kp;
-    configuration.Slot0.kS = PdConstants.ks;
-    configuration.Slot0.kV = PdConstants.kv;
-    configuration.Slot0.kS = PdConstants.ks;
+    configuration.Slot0.kP = kp;
+    configuration.Slot0.kS = ks;
+    configuration.Slot0.kV = kv;
+    configuration.Slot0.kS = ks;
 
     configuration.Voltage.PeakForwardVoltage = Constants.MaxVolConstants.peekFvol;
     configuration.Voltage.PeakReverseVoltage = Constants.MaxVolConstants.peekRvol;
 
     // set Ratio to 50:1
-    configuration.Feedback.SensorToMechanismRatio = 50;
+    configuration.Feedback.SensorToMechanismRatio = gearRatio;
 
     StatusCode statusCode = StatusCode.StatusCodeNotInitialized;
 
@@ -69,14 +68,22 @@ public class HoodSubsystem extends SubsystemBase {
         break;
     }
     if (!statusCode.isOK())
-      System.out.println("Could not apply config, error code:" + statusCode.toString());
+      System.out.println("Could not apply config to HoodSubsystem, error code:" + statusCode.toString());
 
     m_hood.setPosition(0);
+  }
+
+  public void moveHoodTo(double degrees){
+    this.hoodDeg = degrees;
+
+    double targetPosition = degrees * TICKS_PER_DEGREE;
+    m_hood.setControl(motionMagic.withPosition(targetPosition));
   }
 
   public double getHoodPose() {
     return m_hood.getPosition().getValue();
   }
+  
 
   @Override
   public void periodic() {

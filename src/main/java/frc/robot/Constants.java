@@ -19,10 +19,11 @@ public final class Constants {
 
   public static class HoodConstants{
     public static final int HoodPort = 1;
-  }
+    public static final int encoderCountsPerRevolution = 1024;
+    public static final double gearRatio = 50.0;
+    public static final double TICKS_PER_DEGREE = encoderCountsPerRevolution * gearRatio / 360.0;
 
-
-  public static class PdConstants{
+    //motionMagic Constants
     public static final double mmc = 5;
     public static final double mma = 10;
     public static final double mmj = 50;
