@@ -25,7 +25,7 @@ public class HoodSubsystem extends SubsystemBase {
   private final MotionMagicVoltage motionMagic = new MotionMagicVoltage(0);
 
   // the instance
-  public static HoodSubsystem instance;
+  private static HoodSubsystem instance;
 
   public static HoodSubsystem getInstance() {
     if (instance == null) {
@@ -35,8 +35,8 @@ public class HoodSubsystem extends SubsystemBase {
   }
 
   // Constractor
-  public HoodSubsystem() {
-    this.m_hood = new TalonFX(HoodPort);
+  private HoodSubsystem() {
+    this.m_hood = new TalonFX(HoodID);
     hoodDeg = 0;
 
     // creat the full MotionMagic
@@ -86,7 +86,7 @@ public class HoodSubsystem extends SubsystemBase {
   
   //Checking the degree difference conditions
   public boolean isHoodReady() {
-    return Math.abs(getHoodPose() - hoodDeg) <= READY_DEG_TOLERANCE;
+    return (Math.abs(m_hood.getClosedLoopError().getValue()) < minimumError);
   }
 
   @Override

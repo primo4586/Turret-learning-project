@@ -20,13 +20,13 @@ public final class Constants {
   public static class HoodConstants{
 
     //technical Constants
-    public static final int HoodPort = 1;
+    public static final int HoodID = 1;
     public static final int encoderCountsPerRevolution = 1024;
     public static final double gearRatio = 50.0;
     public static final double TICKS_PER_DEGREE = encoderCountsPerRevolution * gearRatio / 360.0;
 
     //condition Costants
-    public static final double READY_DEG_TOLERANCE = 2.0;
+    public static final double minimumError = 2.0;
 
     //motionMagic Constants
     public static final double mmc = 5;
