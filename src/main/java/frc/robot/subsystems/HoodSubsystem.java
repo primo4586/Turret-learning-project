@@ -21,33 +21,33 @@ import static frc.robot.Constants.HoodConstants.*;
 public class HoodSubsystem extends SubsystemBase {
   /** Creates a new Hood. */
 
-  //created the motor,MM, and the hood deg it's needs to be
+  // created the motor,MM, and the hood deg it's needs to be
   private TalonFX m_hood;
   private double hoodDeg;
   private final MotionMagicVoltage m_PositionVoltage = new MotionMagicVoltage(0);
 
-  //the instance
+  // the instance
   public static HoodSubsystem instance;
 
-  public static HoodSubsystem getInstance(){
-    if(instance == null){
+  public static HoodSubsystem getInstance() {
+    if (instance == null) {
       instance = new HoodSubsystem();
     }
     return instance;
   }
 
-  //Constractor
+  // Constractor
   public HoodSubsystem() {
-     this.m_hood = new TalonFX(HoodPort);
-     hoodDeg = 0;
+    this.m_hood = new TalonFX(HoodPort);
+    hoodDeg = 0;
 
-    //creat the full MotionMagic
+    // creat the full MotionMagic
     TalonFXConfiguration configuration = new TalonFXConfiguration();
     MotionMagicConfigs mm = new MotionMagicConfigs();
 
     mm.MotionMagicCruiseVelocity = PdConstants.mmc;
     mm.MotionMagicAcceleration = PdConstants.mma;
-    mm.MotionMagicJerk=PdConstants.mmj;
+    mm.MotionMagicJerk = PdConstants.mmj;
     configuration.MotionMagic = mm;
 
     configuration.Slot0.kP = PdConstants.kp;
@@ -57,28 +57,26 @@ public class HoodSubsystem extends SubsystemBase {
 
     configuration.Voltage.PeakForwardVoltage = Constants.MaxVolConstants.peekFvol;
     configuration.Voltage.PeakReverseVoltage = Constants.MaxVolConstants.peekRvol;
-    
-    //set Ratio to 50:1
-    configuration.Feedback.SensorToMechanismRatio =50;
-    
+
+    // set Ratio to 50:1
+    configuration.Feedback.SensorToMechanismRatio = 50;
+
     StatusCode statusCode = StatusCode.StatusCodeNotInitialized;
 
-    for(int i=0;i<5;i++){
+    for (int i = 0; i < 5; i++) {
       statusCode = m_hood.getConfigurator().apply(configuration);
-      if(statusCode.isOK())
+      if (statusCode.isOK())
         break;
     }
-    if(!statusCode.isOK())
-      System.out.println("Could not apply config, error code:"+statusCode.toString());
+    if (!statusCode.isOK())
+      System.out.println("Could not apply config, error code:" + statusCode.toString());
 
-      m_hood.setPosition(0);
+    m_hood.setPosition(0);
   }
 
-
-  public double getHoodPose(){
-    return this.hoodDeg;
+  public double getHoodPose() {
+    return m_hood.getPosition().getValue();
   }
-
 
   @Override
   public void periodic() {
