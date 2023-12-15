@@ -16,29 +16,30 @@ import com.ctre.phoenix6.signals.ControlModeValue;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.Constants.PdConstants;
+import static frc.robot.Constants.HoodConstants.*;
 
-public class HoodeSubsystem extends SubsystemBase {
-  /** Creates a new Hoode. */
+public class HoodSubsystem extends SubsystemBase {
+  /** Creates a new Hood. */
 
-  //created the motor,MM, and the hoode deg it's needs to be
-  private TalonFX m_hoode;
-  private double hoodeDeg;
+  //created the motor,MM, and the hood deg it's needs to be
+  private TalonFX m_hood;
+  private double hoodDeg;
   private final MotionMagicVoltage m_PositionVoltage = new MotionMagicVoltage(0);
 
   //the instance
-  public static HoodeSubsystem instance;
+  public static HoodSubsystem instance;
 
-  public static HoodeSubsystem getInstance(){
+  public static HoodSubsystem getInstance(){
     if(instance == null){
-      instance = new HoodeSubsystem();
+      instance = new HoodSubsystem();
     }
     return instance;
   }
 
   //Constractor
-  public HoodeSubsystem() {
-     this.m_hoode = new TalonFX(Constants.HoodeConstants.HoodePort);
-     hoodeDeg = 0;
+  public HoodSubsystem() {
+     this.m_hood = new TalonFX(HoodPort);
+     hoodDeg = 0;
 
     //creat the full MotionMagic
     TalonFXConfiguration configuration = new TalonFXConfiguration();
@@ -63,19 +64,19 @@ public class HoodeSubsystem extends SubsystemBase {
     StatusCode statusCode = StatusCode.StatusCodeNotInitialized;
 
     for(int i=0;i<5;i++){
-      statusCode = m_hoode.getConfigurator().apply(configuration);
+      statusCode = m_hood.getConfigurator().apply(configuration);
       if(statusCode.isOK())
         break;
     }
     if(!statusCode.isOK())
       System.out.println("Could not apply config, error code:"+statusCode.toString());
 
-      m_hoode.setPosition(0);
+      m_hood.setPosition(0);
   }
 
-  
-  public double getPosHoode(){
-    return this.hoodeDeg;
+
+  public double getHoodPose(){
+    return this.hoodDeg;
   }
 
 

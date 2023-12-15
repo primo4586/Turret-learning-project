@@ -7,11 +7,11 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
 
-public class HoodePosReset extends Command {
+public class HoodPosReset extends Command {
 
   Timer timer;
-  /** Creates a new HoodePosReset. */
-  public HoodePosReset() {
+  /** Creates a new HoodPosReset. */
+  public HoodPosReset() {
     
     this.timer = new Timer();
 

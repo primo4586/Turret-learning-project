@@ -17,8 +17,8 @@ public final class Constants {
     public static final int kDriverControllerPort = 0;
   }
 
-  public static class HoodeConstants{
-    public static final int HoodePort = 1;
+  public static class HoodConstants{
+    public static final int HoodPort = 1;
   }
 
 
