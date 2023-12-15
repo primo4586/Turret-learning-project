@@ -73,10 +73,10 @@ public class HoodSubsystem extends SubsystemBase {
   }
 
   //moving function for the Hood
-  public void moveHoodTo(double targetPosition){
-    this.hoodDeg = targetPosition;//Updates the required degrees
+  public void moveHoodTo(double degrees){
+    this.hoodDeg = degrees;//Updates the required degrees
 
-    m_hood.setControl(motionMagic.withPosition(targetPosition));
+    m_hood.setControl(motionMagic.withPosition(degrees));
   }
 
   //get function for the Hood pose
