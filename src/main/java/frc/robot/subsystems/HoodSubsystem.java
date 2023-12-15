@@ -53,8 +53,8 @@ public class HoodSubsystem extends SubsystemBase {
     configuration.Slot0.kV = kv;
     configuration.Slot0.kS = ks;
 
-    configuration.Voltage.PeakForwardVoltage = MaxVolConstants.peekFvol;
-    configuration.Voltage.PeakReverseVoltage = MaxVolConstants.peekRvol;
+    configuration.Voltage.PeakForwardVoltage = peekFvol;
+    configuration.Voltage.PeakReverseVoltage = peekRvol;
 
     // set Ratio to 50:1
     configuration.Feedback.SensorToMechanismRatio = gearRatio;
@@ -76,7 +76,7 @@ public class HoodSubsystem extends SubsystemBase {
   public void moveHoodTo(double degrees){
     this.hoodDeg = degrees;//Updates the required degrees
 
-    double targetPosition = degrees * TICKS_PER_DEGREE;//convert
+    double targetPosition = degrees * TICKS_PER_DEGREE;//convert deg to tick
     m_hood.setControl(motionMagic.withPosition(targetPosition));
   }
 
