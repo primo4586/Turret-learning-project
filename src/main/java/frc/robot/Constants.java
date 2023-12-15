@@ -15,5 +15,12 @@ package frc.robot;
 public final class Constants {
   public static class OperatorConstants {
     public static final int kDriverControllerPort = 0;
+
+  }
+  //constants for turrentShot subsystem
+  public static class TurrentShotConstants{
+    public static final int KshotMotorID = 20;
+    public static final int KenterBallMotorID = 20;
+    
   }
 }
