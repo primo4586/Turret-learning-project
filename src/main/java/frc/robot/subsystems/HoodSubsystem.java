@@ -73,18 +73,20 @@ public class HoodSubsystem extends SubsystemBase {
     m_hood.setPosition(0);
   }
 
+  //moving function for the Hood
   public void moveHoodTo(double degrees){
-    this.hoodDeg = degrees;
+    this.hoodDeg = degrees;//Updates the required degrees
 
-    double targetPosition = degrees * TICKS_PER_DEGREE;
+    double targetPosition = degrees * TICKS_PER_DEGREE;//convert
     m_hood.setControl(motionMagic.withPosition(targetPosition));
   }
 
+  //get function for the Hood pose
   public double getHoodPose() {
     return m_hood.getPosition().getValue();
   }
   
-
+  //Checking the degree difference conditions
   public boolean isHoodReady() {
     return Math.abs(getHoodPose() - hoodDeg) <= READY_DEG_TOLERANCE;
   }
