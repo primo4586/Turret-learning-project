@@ -16,8 +16,15 @@ public class TurretSubsystem extends SubsystemBase {
   private final MotionMagicVoltage motionMagic = new MotionMagicVoltage(0);
   private TalonFX motor;
 
-  
-  public TurretSubsystem() {
+  public static TurretSubsystem instance;
+    // singleton
+    public static TurretSubsystem getInstance(){
+      if (instance == null){
+        instance = new TurretSubsystem();
+      }
+      return instance;
+    }  
+  private TurretSubsystem() {
     this.motor = new TalonFX(KMotorID);
 
     TalonFXConfiguration configs = new TalonFXConfiguration();
@@ -37,7 +44,7 @@ public class TurretSubsystem extends SubsystemBase {
     configs.Voltage.PeakReverseVoltage = PeakReverseVoltage;
     configs.Feedback.SensorToMechanismRatio = SensorToMechanismRatio;
 
-        // gives code to TalonFX
+    // gives code to TalonFX
     StatusCode status = StatusCode.StatusCodeNotInitialized;
     for (int i = 0; i < 5; i++){
         status = motor.getConfigurator().apply(configs);
@@ -46,20 +53,11 @@ public class TurretSubsystem extends SubsystemBase {
         }
       }
       if (!status.isOK()){
-        System.out.println("Could not apply configs, erro code: " + status.toString());
+        System.out.println("Could not apply configs to turret, erro code: " + status.toString());
       }
         
       //make sure we start at 0.
       motor.setPosition(0);
-    }
-
-    public static TurretSubsystem instance;
-    // singleton
-    public static TurretSubsystem getInstance(){
-      if (instance == null){
-        instance = new TurretSubsystem();
-      }
-      return instance;
     }
 
     // moves the turret to one place
@@ -67,7 +65,7 @@ public class TurretSubsystem extends SubsystemBase {
       motor.setControl(motionMagic.withPosition(place));
     }
     //get turret position
-    public double getPostionTurret(){
+    public double getPostionTurret(){ // TODO: understand what ori is saying 
       return this.motor.getPosition().getValue();
     }
     // checks if the turret is in the right position
@@ -77,9 +75,10 @@ public class TurretSubsystem extends SubsystemBase {
       }
       return false;
     }
+    // TODO: add a manual turn for the turret
 
 
-    
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
