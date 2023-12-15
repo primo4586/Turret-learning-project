@@ -4,18 +4,16 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.subsystems.HoodSubsystem;
 
 public class HoodPosReset extends Command {
+  private final HoodSubsystem hood = HoodSubsystem.getInstance();
 
-  Timer timer;
   /** Creates a new HoodPosReset. */
   public HoodPosReset() {
-    
-    this.timer = new Timer();
+    this.addRequirements(hood);
 
-    this.timer.start();
   }
 
   // Called when the command is initially scheduled.
