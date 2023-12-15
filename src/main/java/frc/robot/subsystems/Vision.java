@@ -10,7 +10,6 @@ import org.photonvision.PhotonPoseEstimator.PoseStrategy;
 
 import edu.wpi.first.apriltag.AprilTagFieldLayout;
 import edu.wpi.first.apriltag.AprilTagFields;
-import edu.wpi.first.units.Distance;
 import frc.robot.Constants;
 /** Add your docs here. */
 public class Vision {
@@ -25,10 +24,5 @@ public class Vision {
         //photonEstimator = new PhotonPoseEstimator(kTagLayout, PoseStrategy.MULTI_TAG_PNP_ON_COPROCESSOR, Camera, Constants.VisionConstants.kRobotToCam);
         photonEstimator.setMultiTagFallbackStrategy(PoseStrategy.LOWEST_AMBIGUITY);
 
-    }
-
-    public enum PoseStrategy{
-        MULTI_TAG_PNP_ON_COPROCESSOR,
-        LOWEST_AMBIGUITY
     }
 }
