@@ -57,7 +57,7 @@ public class HoodSubsystem extends SubsystemBase {
     configuration.Voltage.PeakReverseVoltage = peekRvol;
 
     // set Ratio to 50:1
-    configuration.Feedback.SensorToMechanismRatio = gearRatio;
+    configuration.Feedback.SensorToMechanismRatio = TICKS_PER_DEGREE;
 
     StatusCode statusCode = StatusCode.StatusCodeNotInitialized;
 
@@ -73,10 +73,9 @@ public class HoodSubsystem extends SubsystemBase {
   }
 
   //moving function for the Hood
-  public void moveHoodTo(double degrees){
-    this.hoodDeg = degrees;//Updates the required degrees
+  public void moveHoodTo(double targetPosition){
+    this.hoodDeg = targetPosition;//Updates the required degrees
 
-    double targetPosition = degrees * TICKS_PER_DEGREE;//convert deg to tick
     m_hood.setControl(motionMagic.withPosition(targetPosition));
   }
 
