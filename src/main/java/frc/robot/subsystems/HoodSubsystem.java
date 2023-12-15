@@ -14,7 +14,6 @@ import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.ControlModeValue;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
 import static frc.robot.Constants.HoodConstants.*;
 
 public class HoodSubsystem extends SubsystemBase {
@@ -54,8 +53,8 @@ public class HoodSubsystem extends SubsystemBase {
     configuration.Slot0.kV = kv;
     configuration.Slot0.kS = ks;
 
-    configuration.Voltage.PeakForwardVoltage = Constants.MaxVolConstants.peekFvol;
-    configuration.Voltage.PeakReverseVoltage = Constants.MaxVolConstants.peekRvol;
+    configuration.Voltage.PeakForwardVoltage = MaxVolConstants.peekFvol;
+    configuration.Voltage.PeakReverseVoltage = MaxVolConstants.peekRvol;
 
     // set Ratio to 50:1
     configuration.Feedback.SensorToMechanismRatio = gearRatio;

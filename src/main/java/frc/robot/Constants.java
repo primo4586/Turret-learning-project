@@ -37,11 +37,9 @@ public final class Constants {
     public static final double ks = 24;
     public static final double ka = 24;
     public static final double kv = 24;
-  }
 
-  public static class MaxVolConstants{
+    //MaxVol Constant
     public static final double peekRvol = -11.5;
     public static final double peekFvol = 11.5;
-
   }
 }
