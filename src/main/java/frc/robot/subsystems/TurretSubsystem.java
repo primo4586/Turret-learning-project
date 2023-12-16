@@ -14,7 +14,7 @@ import static frc.robot.Constants.Turret.*;
 
 public class TurretSubsystem extends SubsystemBase {
   private final MotionMagicVoltage motionMagic = new MotionMagicVoltage(0);
-  private TalonFX motor;
+  private TalonFX m_motorTurret;
   private static TurretSubsystem instance;
     // singleton
     public static TurretSubsystem getInstance(){
@@ -24,7 +24,7 @@ public class TurretSubsystem extends SubsystemBase {
       return instance;
     }  
   private TurretSubsystem() {
-    this.motor = new TalonFX(KMotorID);
+    this.m_motorTurret = new TalonFX(KMotorID);
 
     TalonFXConfiguration configs = new TalonFXConfiguration();
     MotionMagicConfigs mm = new MotionMagicConfigs();
@@ -51,7 +51,7 @@ public class TurretSubsystem extends SubsystemBase {
     // gives code to TalonFX
     StatusCode status = StatusCode.StatusCodeNotInitialized;
     for (int i = 0; i < 5; i++){
-        status = motor.getConfigurator().apply(configs);
+        status = m_motorTurret.getConfigurator().apply(configs);
         if (status.isOK()){
           break;
         }
@@ -61,27 +61,27 @@ public class TurretSubsystem extends SubsystemBase {
       }
         
       //make sure we start at 0.
-      motor.setPosition(0);
+      m_motorTurret.setPosition(0);
     }
 
     // moves the turret to one place
     public void putTurretInPose(double degree){
-      motor.setControl(motionMagic.withPosition(degree));
+      m_motorTurret.setControl(motionMagic.withPosition(degree));
     }
     //get turret position
     public double getPostionTurret(){
-      return this.motor.getPosition().getValue();
+      return this.m_motorTurret.getPosition().getValue();
     }
     // checks if the turret is in the right position
     public boolean checkTurretPosition(){
-      if (Math.abs(motor.getClosedLoopError().getValue()) < minimumError){
+      if (Math.abs(m_motorTurret.getClosedLoopError().getValue()) < minimumError){
         return true;
       }
       return false;
     }
     //manual turn for the turret
     public void manualTurnForTurret(double speed){
-      this.motor.set(speed);
+      this.m_motorTurret.set(speed);
     }
 
   @Override
