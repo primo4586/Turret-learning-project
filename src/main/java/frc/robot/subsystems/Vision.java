@@ -29,19 +29,19 @@ import frc.robot.Robot;
 
 
 public class Vision {
-    private AprilTagFieldLayout kTagLayout = AprilTagFields.k2023ChargedUp.loadAprilTagLayoutField();
-    private static PhotonCamera camera;
+    private static AprilTagFieldLayout kTagLayout = AprilTagFields.k2023ChargedUp.loadAprilTagLayoutField();
+    //private static PhotonCamera camera ;
     private static PhotonPoseEstimator photonEstimator;
     static double lastEstTimestamp = 0;
-    public Vision() {
-        camera = new PhotonCamera(FRONT_CAMERA_NAME); // creating camera
-        photonEstimator = new PhotonPoseEstimator(kTagLayout, PoseStrategy.MULTI_TAG_PNP_ON_COPROCESSOR, camera,
-               kRobotToCam);
-        photonEstimator.setMultiTagFallbackStrategy(PoseStrategy.LOWEST_AMBIGUITY);
-
-    }
+    private static PhotonCamera camera = new PhotonCamera(FRONT_CAMERA_NAME); // creating camera
+    
+    
     // 1. getting position:
+
     public static Optional<EstimatedRobotPose> getEstimatedGlobalPose() {
+        photonEstimator.setMultiTagFallbackStrategy(PoseStrategy.LOWEST_AMBIGUITY);
+        photonEstimator = new PhotonPoseEstimator(kTagLayout, PoseStrategy.MULTI_TAG_PNP_ON_COPROCESSOR, camera,
+        kRobotToCam);
         var visionEst = photonEstimator.update();
         double latestTimestamp = camera.getLatestResult().getTimestampSeconds();
         boolean newResult = Math.abs(latestTimestamp - lastEstTimestamp) > 1e-5;
