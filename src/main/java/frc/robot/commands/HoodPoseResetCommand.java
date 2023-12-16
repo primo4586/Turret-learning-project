@@ -8,19 +8,17 @@ import frc.robot.subsystems.HoodSubsystem;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 
 public class HoodPoseResetCommand extends InstantCommand {
-  private final HoodSubsystem m_subsystem;
-  HoodSubsystem subsystem = HoodSubsystem.getInstance();
+  private final HoodSubsystem hoodSubsystem = HoodSubsystem.getInstance();
 
   /** Creates a new HoodPoseReset. */
   public HoodPoseResetCommand() {
-    m_subsystem = subsystem;
-    addRequirements(subsystem);
+    addRequirements(hoodSubsystem);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    m_subsystem.HoodPoseReset();
+    hoodSubsystem.HoodPoseReset();
   }
 }
