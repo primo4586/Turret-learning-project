@@ -50,7 +50,7 @@ public final class Constants {
     public static final double backwordLimit = 300;
 
     //iterpolation map values
-    public static final InterpolationMap SHOOTER_VISION_MAP = new InterpolationMap()
+    public static final InterpolationMap HOOD_VISION_MAP = new InterpolationMap()
                 .put(1, 14100)
                 .put(1.2, 13800)
                 .put(1.4, 12800)

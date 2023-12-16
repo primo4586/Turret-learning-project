@@ -99,9 +99,12 @@ public class HoodSubsystem extends SubsystemBase {
     return (Math.abs(m_hood.getClosedLoopError().getValue()) < minimumError);
   }
 
-  //Gets the HoodPose from distance through SHOOTER_VISION_MAP
+  //Gets the HoodPose from distance through HOOD_VISION_MAP
   public double PoseFromDis(double distance){
-    return InterpolateUtil.interpolate(SHOOTER_VISION_MAP, distance);
+    return InterpolateUtil.interpolate(HOOD_VISION_MAP, distance);
+  }
+  public void HoodPoseReset(){
+    m_hood.setControl(motionMagic.withPosition(0));
   }
 
   @Override
