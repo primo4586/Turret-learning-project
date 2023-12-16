@@ -7,8 +7,6 @@ package frc.robot.subsystems;
 import org.photonvision.PhotonCamera;
 import org.photonvision.PhotonPoseEstimator;
 import org.photonvision.PhotonPoseEstimator.PoseStrategy;
-import org.photonvision.simulation.PhotonCameraSim;
-import org.photonvision.simulation.VisionSystemSim;
 import org.photonvision.targeting.PhotonPipelineResult;
 
 import edu.wpi.first.apriltag.AprilTagFieldLayout;
@@ -19,14 +17,11 @@ import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.numbers.N1;
 import edu.wpi.first.math.numbers.N3;
 import frc.robot.Constants;
-/** Add your docs here. */
 public class Vision {
     private AprilTagFieldLayout kTagLayout = AprilTagFields.k2023ChargedUp.loadAprilTagLayoutField();
     private final PhotonCamera camera;
     private final PhotonPoseEstimator photonEstimator;
-    private PhotonCameraSim cameraSim;
-    private VisionSystemSim visionSim;
-    private double lastEstTimestamp = 0;
+   
 
 
     
