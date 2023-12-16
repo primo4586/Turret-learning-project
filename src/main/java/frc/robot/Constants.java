@@ -51,7 +51,6 @@ public final class Constants {
     public static final double kV = 0.12;
     public static final double kS = 0.25;
     
-    public static final int ShooterSpeed = 23023;
     public static final int FeederSpeed = 2000;
     public static final int ShooterIdleSpeed = 2342;
     public static final int MaxError = 13;

@@ -10,11 +10,11 @@ import frc.robot.subsystems.ShooterSubsystem;
 import static frc.robot.Constants.ShooterConstants.*;
 
 public class FeederSetSpeed extends InstantCommand {
-  private final ShooterSubsystem feeder = ShooterSubsystem.getInstance();
+  private final ShooterSubsystem shooterSubsystem = ShooterSubsystem.getInstance();
   // double speedPrecent;
   /** Creates a new FeederSetSpeed. */
   public FeederSetSpeed() {
-    this.addRequirements(feeder);
+    this.addRequirements(shooterSubsystem);
     // Use addRequirents() here to declare subsystem dependencies.
   }
 
@@ -22,6 +22,6 @@ public class FeederSetSpeed extends InstantCommand {
   @Override
   public void initialize() {
     //set feeder speed from constants
-    this.feeder.setFeederSpeed(FeederSpeed);
+    this.shooterSubsystem.setFeederSpeed(FeederSpeed);
   }
 }
