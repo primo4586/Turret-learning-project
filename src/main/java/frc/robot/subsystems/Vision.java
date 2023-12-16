@@ -27,19 +27,13 @@ import edu.wpi.first.math.numbers.N3;
 import static frc.robot.Constants.VisionConstants.*;
 import frc.robot.Robot;
 
+
+
 public class Vision {
     private AprilTagFieldLayout kTagLayout = AprilTagFields.k2023ChargedUp.loadAprilTagLayoutField();
-    private final PhotonCamera camera;
-    private final PhotonPoseEstimator photonEstimator;
+    private static PhotonCamera camera;
+    private static PhotonPoseEstimator photonEstimator;
     double lastEstTimestamp = 0;
-    double distanceFromTarget;
-    double currentXPosition;
-    double currentYPosition;
-    double sideA;
-    double sideB;
-    double sideC;
-    double angle;
-
     public Vision() {
         camera = new PhotonCamera(FRONT_CAMERA_NAME); // creating camera
         photonEstimator = new PhotonPoseEstimator(kTagLayout, PoseStrategy.MULTI_TAG_PNP_ON_COPROCESSOR, camera,
