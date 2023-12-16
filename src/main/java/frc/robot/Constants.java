@@ -51,8 +51,8 @@ public final class Constants {
     public static final double kV = 0.12;
     public static final double kS = 0.25;
     
-    public static final int ShooterSpeed = 12700;
     public static final int FeederSpeed = 2000;
+    public static final int ShooterIdleSpeed = 2342;
     public static final int MaxError = 13;
     public static final double MaxTime = 3;
 
@@ -117,11 +117,5 @@ public final class Constants {
     public static final Matrix<N3, N1> kSingleTagStdDevs = VecBuilder.fill(4, 4, 8);
     public static final Matrix<N3, N1> kMultiTagStdDevs = VecBuilder.fill(0.5, 0.5, 1);
     public static final Pose2d target = new Pose2d(1, 1, new Rotation2d(Units.degreesToRadians(0)));
-
-
-
-
-
-
   }
 }

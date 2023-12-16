@@ -1,4 +1,3 @@
-// Copyright (c) FIRST and other WPILib contributors.
 
 package frc.robot.subsystems;
 
@@ -11,6 +10,7 @@ import com.ctre.phoenix6.controls.MotionMagicVelocityVoltage;
 import com.ctre.phoenix6.hardware.TalonFX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.commands.shooterCommands.ShooterSetSpeed;
 import frc.robot.util.interpolation.InterpolateUtil;
 
 import static frc.robot.Constants.ShooterConstants.*;
@@ -60,6 +60,8 @@ public class ShooterSubsystem extends SubsystemBase {
     configs.Voltage.PeakForwardVoltage = PeakForwardVoltage;
     configs.Voltage.PeakReverseVoltage = PeakReverseVoltage;
 
+    configs.Feedback.SensorToMechanismRatio = SensorToMechanismRatio;
+
     StatusCode status = StatusCode.StatusCodeNotInitialized;
     for (int i = 0; i < 5; ++i) {
       status = m_shooterMotor.getConfigurator().apply(configs);
@@ -67,17 +69,14 @@ public class ShooterSubsystem extends SubsystemBase {
         break;
     }
     if (!status.isOK()) {
-      System.out.println("Could not apply configs, error code: " + status.toString());
+      System.out.println("Shooter could not apply configs, error code: " + status.toString());
     }
-
-    configs.Feedback.SensorToMechanismRatio = SensorToMechanismRatio;
-
+    this.setDefaultCommand(new ShooterSetSpeed(ShooterIdleSpeed));
   }
 
   //activate feeder motor
   public void setFeederSpeed(double speedPrecent) {
     this.m_feederMotor.set(TalonSRXControlMode.PercentOutput, speedPrecent);
-    ;
   }
   
   //activate shooter motor
