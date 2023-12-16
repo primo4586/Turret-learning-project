@@ -10,7 +10,7 @@ import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.controls.MotionMagicVoltage;
 import com.ctre.phoenix6.hardware.TalonFX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import static frc.robot.Constants.turret.*;
+import static frc.robot.Constants.Turret.*;
 
 public class TurretSubsystem extends SubsystemBase {
   private final MotionMagicVoltage motionMagic = new MotionMagicVoltage(0);

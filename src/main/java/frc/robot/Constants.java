@@ -13,7 +13,7 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-public static class turret{ //TODO: give good nums!
+public static class Turret{ //TODO: give good nums!
     //mm
     public static final int KMotorID = 20;
     public static final double CollectMotorSpeed = 0.5;
@@ -39,6 +39,8 @@ public static class turret{ //TODO: give good nums!
     public static final double SensorToMechanismRatio = 50*1024/360;
 
     public static final double turretManualSpeed = 0.5; // TODO: give good nums also 
+
+    public static final double TurretRestartDgree = 0;
 
   }
   public static class OperatorConstants {
