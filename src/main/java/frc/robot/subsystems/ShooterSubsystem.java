@@ -10,6 +10,8 @@ import com.ctre.phoenix6.controls.MotionMagicVelocityVoltage;
 import com.ctre.phoenix6.hardware.TalonFX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.util.interpolation.InterpolateUtil;
+
 import static frc.robot.Constants.ShooterConstants.*;
 
 public class ShooterSubsystem extends SubsystemBase {
@@ -71,19 +73,26 @@ public class ShooterSubsystem extends SubsystemBase {
 
   }
 
-  public void setShooterSpeed(double shooterSpeed) {
-    this.m_shooterMotor.setControl(motionMagic.withVelocity(shooterSpeed));
+  //להפעיל את המנוע Feeder
+  public void setFeederSpeed(double feederSpeed) {
+    this.m_shooterMotor.setControl(motionMagic.withVelocity(FeederSpeed));
   }
 
   public double getMotorSpeed() {
     return m_shooterMotor.getVelocity().getValue();
   }
 
-  public boolean ChecksIfSpeedRight() {
-    if (Math.abs(m_shooterMotor.getClosedLoopError().getValue()) < LimitSpeed) {
-      return true;
-    }
-    return false;
+  public boolean checksIfAtSpeed() {
+    return (Math.abs(m_shooterMotor.getClosedLoopError().getValue()) < MaxError);
+
+  }
+  //להפעיל את המנוע Shooter
+  public void setShooterSpeed(double shooterSpeed) {
+    this.m_shooterMotor.setControl(motionMagic.withVelocity(shooterSpeed));
+  }
+
+  public double InterpolationValue(double distance){
+    return InterpolateUtil.interpolate(ShooterInterpolation, distance);
   }
 
   @Override
