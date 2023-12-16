@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import frc.robot.util.interpolation.InterpolationMap;
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants. This class should not be used for any other purpose. All constants should be declared
@@ -47,5 +49,16 @@ public final class Constants {
     public static final double forwardLimit = 300;
     public static final double backwordLimit = 300;
 
+    //iterpolation map values
+    public static final InterpolationMap SHOOTER_VISION_MAP = new InterpolationMap()
+                .put(1, 14100)
+                .put(1.2, 13800)
+                .put(1.4, 12800)
+                .put(1.6, 12800)
+                .put(1.8, 12900)
+                .put(2, 13200)
+                .put(2.1, 13300);
+
   }
+  
 }

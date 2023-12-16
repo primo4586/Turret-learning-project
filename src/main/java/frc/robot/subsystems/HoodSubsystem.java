@@ -14,6 +14,8 @@ import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.ControlModeValue;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.util.interpolation.InterpolateUtil;
+
 import static frc.robot.Constants.HoodConstants.*;
 
 public class HoodSubsystem extends SubsystemBase {
@@ -95,6 +97,11 @@ public class HoodSubsystem extends SubsystemBase {
   //Checking the degree difference conditions
   public boolean isHoodReady() {
     return (Math.abs(m_hood.getClosedLoopError().getValue()) < minimumError);
+  }
+
+  //Gets the HoodPose from distance through SHOOTER_VISION_MAP
+  public double PoseFromDis(double distance){
+    return InterpolateUtil.interpolate(SHOOTER_VISION_MAP, distance);
   }
 
   @Override
