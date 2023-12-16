@@ -40,7 +40,7 @@ public static class Turret{ //TODO: give good nums!
 
     public static final double turretManualSpeed = 0.5; // TODO: give good nums also 
 
-    public static final double TurretRestartDgree = 0;
+    public static final double TurretResetDegree = 0;
 
   }
   public static class OperatorConstants {

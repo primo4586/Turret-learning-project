@@ -8,13 +8,13 @@ import edu.wpi.first.wpilibj2.command.Command;
 import static frc.robot.Constants.Turret.*;
 import frc.robot.subsystems.TurretSubsystem;
 
-public class RestartTurret extends Command {
+public class ResetTurret extends Command {
   private final TurretSubsystem turret = TurretSubsystem.getInstance();
   private double degree;
 
-  public RestartTurret() {
+  public ResetTurret() {
     this.addRequirements(turret);
-    this.degree = TurretRestartDgree;
+    this.degree = TurretResetDegree;
 
 
   }
@@ -32,15 +32,12 @@ public class RestartTurret extends Command {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    turret.manualTurnForTurret(0);
+    turret.setSpeed(0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (turret.checkTurretPosition()){
-      return true;
-    }
-    return false;
+    return turret.checkTurretPosition();
   }
 }

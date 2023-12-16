@@ -80,7 +80,7 @@ public class TurretSubsystem extends SubsystemBase {
       return false;
     }
     //manual turn for the turret
-    public void manualTurnForTurret(double speed){
+    public void setSpeed(double speed){
       this.m_motorTurret.set(speed);
     }
 
