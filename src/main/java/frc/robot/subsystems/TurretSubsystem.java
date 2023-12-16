@@ -15,8 +15,7 @@ import static frc.robot.Constants.turret.*;
 public class TurretSubsystem extends SubsystemBase {
   private final MotionMagicVoltage motionMagic = new MotionMagicVoltage(0);
   private TalonFX motor;
-
-  public static TurretSubsystem instance;
+  private static TurretSubsystem instance;
     // singleton
     public static TurretSubsystem getInstance(){
       if (instance == null){
@@ -44,6 +43,11 @@ public class TurretSubsystem extends SubsystemBase {
     configs.Voltage.PeakReverseVoltage = PeakReverseVoltage;
     configs.Feedback.SensorToMechanismRatio = SensorToMechanismRatio;
 
+    configs.SoftwareLimitSwitch.ForwardSoftLimitEnable = ForwardSoftLimitEnable;
+    configs.SoftwareLimitSwitch.ForwardSoftLimitThreshold = ForwardSoftLimitThreshold;
+    configs.SoftwareLimitSwitch.ReverseSoftLimitEnable = ReverseSoftLimitEnable;
+    configs.SoftwareLimitSwitch.ReverseSoftLimitThreshold = RevesrseSoftLimitThreshold;
+
     // gives code to TalonFX
     StatusCode status = StatusCode.StatusCodeNotInitialized;
     for (int i = 0; i < 5; i++){
@@ -61,8 +65,8 @@ public class TurretSubsystem extends SubsystemBase {
     }
 
     // moves the turret to one place
-    public void putTurretInPlace(double pose){
-      motor.setControl(motionMagic.withPosition(pose));
+    public void putTurretInPose(double degree){
+      motor.setControl(motionMagic.withPosition(degree));
     }
     //get turret position
     public double getPostionTurret(){
@@ -76,12 +80,9 @@ public class TurretSubsystem extends SubsystemBase {
       return false;
     }
     //manual turn for the turret
-    public void manualTurnForTurret(int vector){ // vector is 1/-1
-      this.motor.set(vector*turretTurnSpeed);
+    public void manualTurnForTurret(double speed){
+      this.motor.set(speed);
     }
-
-
-
 
   @Override
   public void periodic() {
