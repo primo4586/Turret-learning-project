@@ -10,10 +10,10 @@ import frc.robot.subsystems.ShooterSubsystem;
 public class ShooterSetSpeed extends InstantCommand {
   /** Creates a new ShooterSetSpeed. */
   private final ShooterSubsystem shooterSubsystem = ShooterSubsystem.getInstance();
-  double spped;
-
-  public ShooterSetSpeed() {
+  double speed;
+  public ShooterSetSpeed(double speed) {
     this.addRequirements(shooterSubsystem);
+    this.speed = speed;
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -21,6 +21,6 @@ public class ShooterSetSpeed extends InstantCommand {
   @Override
   public void initialize() {
     // set shooter speed from constants
-    this.shooterSubsystem.setShooterSpeed(spped);
+    this.shooterSubsystem.setShooterSpeed(speed);
   }
 }
