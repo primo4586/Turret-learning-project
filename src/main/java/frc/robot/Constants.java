@@ -39,8 +39,8 @@ public final class Constants {
     
     public static final int ShooterSpeed = 12700;
     public static final int FeederSpeed = 2000;
-    public static final int LimitSpeed = 13;
-    public static final double TimeLimit = 3;
+    public static final int MaxError = 13;
+    public static final double MaxTime = 3;
 
     public static final InterpolationMap ShooterInterpolation = new InterpolationMap()
                 .put(1, 9)

@@ -73,7 +73,7 @@ public class ShooterSubsystem extends SubsystemBase {
 
   }
 
-  //להפעיל את המנוע Feeder
+  //activate feeder motor
   public void setFeederSpeed(double feederSpeed) {
     this.m_shooterMotor.setControl(motionMagic.withVelocity(FeederSpeed));
   }
@@ -86,7 +86,7 @@ public class ShooterSubsystem extends SubsystemBase {
     return (Math.abs(m_shooterMotor.getClosedLoopError().getValue()) < MaxError);
 
   }
-  //להפעיל את המנוע Shooter
+  //activate shooter motor
   public void setShooterSpeed(double shooterSpeed) {
     this.m_shooterMotor.setControl(motionMagic.withVelocity(shooterSpeed));
   }
