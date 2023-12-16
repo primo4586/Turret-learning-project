@@ -5,13 +5,14 @@
 package frc.robot.commands;
 
 import frc.robot.subsystems.HoodSubsystem;
-import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 
-public class HoodPoseResetCommand extends Command {
+public class HoodPoseResetCommand extends InstantCommand {
   private final HoodSubsystem m_subsystem;
+  HoodSubsystem subsystem = HoodSubsystem.getInstance();
 
   /** Creates a new HoodPoseReset. */
-  public HoodPoseResetCommand(HoodSubsystem subsystem) {
+  public HoodPoseResetCommand() {
     m_subsystem = subsystem;
     addRequirements(subsystem);
     // Use addRequirements() here to declare subsystem dependencies.
@@ -21,28 +22,5 @@ public class HoodPoseResetCommand extends Command {
   @Override
   public void initialize() {
     m_subsystem.HoodPoseReset();
-  }
-
-  // Called every time the scheduler runs while the command is scheduled.
-  @Override
-  public void execute() {
-  }
-
-  // Called once the command ends or is interrupted.
-  @Override
-  public void end(boolean interrupted) {
-  }
-
-  // Returns true when the command should end.
-  @Override
-  public boolean isFinished() {
-    if (m_subsystem.getHoodPose() == 0.0) {
-      return true;
-    }
-
-    else {
-      return false;
-    }
-
   }
 }
