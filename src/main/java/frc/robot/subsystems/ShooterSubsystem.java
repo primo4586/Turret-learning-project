@@ -71,7 +71,7 @@ public class ShooterSubsystem extends SubsystemBase {
     if (!status.isOK()) {
       System.out.println("Could not apply configs, error code: " + status.toString());
     }
-    this.setDefaultCommand(new ShooterSetSpeed());
+    this.setDefaultCommand(new ShooterSetSpeed(ShooterIdleSpeed));
   }
 
   //activate feeder motor
