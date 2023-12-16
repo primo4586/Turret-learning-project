@@ -20,6 +20,7 @@ import edu.wpi.first.apriltag.AprilTagFields;
 import edu.wpi.first.math.Matrix;
 import edu.wpi.first.math.VecBuilder;
 import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Transform2d;
 import edu.wpi.first.math.numbers.N1;
 import edu.wpi.first.math.numbers.N3;
@@ -94,7 +95,8 @@ public class Vision {
         
     }
 
-    public void GetAngleFromTarget(){
+    public Rotation2d GetAngleFromTarget(){
+        return PhotonUtils.getYawToPose(getEstimatedGlobalPose().get().estimatedPose.toPose2d() , target);
         
 
     }
