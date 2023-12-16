@@ -18,9 +18,15 @@ public final class Constants {
 
   }
   //constants for turrentShot subsystem
-  public static class TurrentShotConstants{
-    public static final int KshotMotorID = 20;
-    public static final int KenterBallMotorID = 20;
-    
+  public static class ShooterConstants{
+    public static final int KShooterMotorID = 20;
+    public static final int KFeederMotorID = 20;
+    public static final int MotionMagicJerk = 50;
+    public static final int MotionMagicCruiseVelocity = 5;
+    public static final int MotionMagicAcceleration = 10;
+    public static final double PeakForwardVoltage = 11.5;
+    public static final double PeakReverseVoltage = -11.5;
+    public static final int SensorToMechanismRatio  = 50;
+
   }
 }
