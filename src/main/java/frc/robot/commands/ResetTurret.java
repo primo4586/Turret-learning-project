@@ -16,7 +16,6 @@ public class ResetTurret extends Command {
     this.addRequirements(turret);
     this.degree = TurretResetDegree;
 
-
   }
 
   // Called when the command is initially scheduled.
@@ -27,7 +26,8 @@ public class ResetTurret extends Command {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+  }
 
   // Called once the command ends or is interrupted.
   @Override

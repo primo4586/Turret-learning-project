@@ -16,13 +16,15 @@ public class TurretSubsystem extends SubsystemBase {
   private final MotionMagicVoltage motionMagic = new MotionMagicVoltage(0);
   private TalonFX m_motorTurret;
   private static TurretSubsystem instance;
-    // singleton
-    public static TurretSubsystem getInstance(){
-      if (instance == null){
-        instance = new TurretSubsystem();
-      }
-      return instance;
-    }  
+
+  // singleton
+  public static TurretSubsystem getInstance() {
+    if (instance == null) {
+      instance = new TurretSubsystem();
+    }
+    return instance;
+  }
+
   private TurretSubsystem() {
     this.m_motorTurret = new TalonFX(KMotorID);
 
@@ -50,39 +52,42 @@ public class TurretSubsystem extends SubsystemBase {
 
     // gives code to TalonFX
     StatusCode status = StatusCode.StatusCodeNotInitialized;
-    for (int i = 0; i < 5; i++){
-        status = m_motorTurret.getConfigurator().apply(configs);
-        if (status.isOK()){
-          break;
-        }
+    for (int i = 0; i < 5; i++) {
+      status = m_motorTurret.getConfigurator().apply(configs);
+      if (status.isOK()) {
+        break;
       }
-      if (!status.isOK()){
-        System.out.println("Could not apply configs to turret, erro code: " + status.toString());
-      }
-        
-      //make sure we start at 0.
-      m_motorTurret.setPosition(0);
+    }
+    if (!status.isOK()) {
+      System.out.println("Could not apply configs to turret, erro code: " + status.toString());
     }
 
-    // moves the turret to one place
-    public void putTurretInPose(double degree){
-      m_motorTurret.setControl(motionMagic.withPosition(degree));
+    // make sure we start at 0.
+    m_motorTurret.setPosition(0);
+  }
+
+  // moves the turret to one place
+  public void putTurretInPose(double degree) {
+    m_motorTurret.setControl(motionMagic.withPosition(degree));
+  }
+
+  // get turret position
+  public double getPostionTurret() {
+    return this.m_motorTurret.getPosition().getValue();
+  }
+
+  // checks if the turret is in the right position
+  public boolean checkTurretPosition() {
+    if (Math.abs(m_motorTurret.getClosedLoopError().getValue()) < minimumError) {
+      return true;
     }
-    //get turret position
-    public double getPostionTurret(){
-      return this.m_motorTurret.getPosition().getValue();
-    }
-    // checks if the turret is in the right position
-    public boolean checkTurretPosition(){
-      if (Math.abs(m_motorTurret.getClosedLoopError().getValue()) < minimumError){
-        return true;
-      }
-      return false;
-    }
-    //manual turn for the turret
-    public void setSpeed(double speed){
-      this.m_motorTurret.set(speed);
-    }
+    return false;
+  }
+
+  // manual turn for the turret
+  public void setSpeed(double speed) {
+    this.m_motorTurret.set(speed);
+  }
 
   @Override
   public void periodic() {
