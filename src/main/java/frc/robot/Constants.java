@@ -29,18 +29,19 @@ public final class Constants {
     public static final double minimumError = 2.0;
 
     //motionMagic Constants
-    public static final double mmc = 5;
-    public static final double mma = 10;
-    public static final double mmj = 50;
+    public static final double mmCruise = 5;
+    public static final double mmAcceleration = 10;
+    public static final double mmJerk = 50;
 
     public static final double kp = 24;
+    public static final double kd = 0.1;
     public static final double ks = 24;
     public static final double ka = 24;
     public static final double kv = 24;
 
     //MaxVol Constant
-    public static final double peekRvol = -11.5;
-    public static final double peekFvol = 11.5;
+    public static final double peekReverseVoltage = -11.5;
+    public static final double peekForwardVoltage = 11.5;
 
     //Constant limit values 
     public static final double forwardLimit = 300;
