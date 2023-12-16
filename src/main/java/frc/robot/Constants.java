@@ -50,6 +50,7 @@ public final class Constants {
     public static final double backwordLimit = 300;
 
     //iterpolation map values
+    //To do: give noraml values
     public static final InterpolationMap HOOD_VISION_MAP = new InterpolationMap()
                 .put(1, 14100)
                 .put(1.2, 13800)

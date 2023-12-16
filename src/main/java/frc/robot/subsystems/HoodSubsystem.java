@@ -22,8 +22,7 @@ public class HoodSubsystem extends SubsystemBase {
   /** Creates a new Hood. */
 
   // created the motor and MotionMagic
-  private TalonFX m_hood;
-  private double hoodDeg;//the degrees the hood needs to be
+  private TalonFX m_hoodMotor;
   private final MotionMagicVoltage motionMagic = new MotionMagicVoltage(0);
 
   // the instance
@@ -38,8 +37,7 @@ public class HoodSubsystem extends SubsystemBase {
 
   // Constractor
   private HoodSubsystem() {
-    this.m_hood = new TalonFX(HoodID);
-    hoodDeg = 0;
+    this.m_hoodMotor = new TalonFX(HoodID);
 
     // creat the full MotionMagic
     TalonFXConfiguration configuration = new TalonFXConfiguration();
@@ -72,31 +70,29 @@ public class HoodSubsystem extends SubsystemBase {
     StatusCode statusCode = StatusCode.StatusCodeNotInitialized;
 
     for (int i = 0; i < 5; i++) {
-      statusCode = m_hood.getConfigurator().apply(configuration);
+      statusCode = m_hoodMotor.getConfigurator().apply(configuration);
       if (statusCode.isOK())
         break;
     }
     if (!statusCode.isOK())
       System.out.println("Could not apply config to HoodSubsystem, error code:" + statusCode.toString());
 
-    m_hood.setPosition(0);
+    m_hoodMotor.setPosition(0);
   }
 
   //moving function for the Hood
   public void moveHoodTo(double degrees){
-    this.hoodDeg = degrees;//Updates the required degrees
-
-    m_hood.setControl(motionMagic.withPosition(degrees));
+    m_hoodMotor.setControl(motionMagic.withPosition(degrees));
   }
 
   //get function for the Hood pose
   public double getHoodPose() {
-    return m_hood.getPosition().getValue();
+    return m_hoodMotor.getPosition().getValue();
   }
   
   //Checking the degree difference conditions
   public boolean isHoodReady() {
-    return (Math.abs(m_hood.getClosedLoopError().getValue()) < minimumError);
+    return (Math.abs(m_hoodMotor.getClosedLoopError().getValue()) < minimumError);
   }
 
   //Gets the HoodPose from distance through HOOD_VISION_MAP
@@ -104,7 +100,7 @@ public class HoodSubsystem extends SubsystemBase {
     return InterpolateUtil.interpolate(HOOD_VISION_MAP, distance);
   }
   public void HoodPoseReset(){
-    m_hood.setControl(motionMagic.withPosition(0));
+    m_hoodMotor.setPosition(0);
   }
 
   @Override
