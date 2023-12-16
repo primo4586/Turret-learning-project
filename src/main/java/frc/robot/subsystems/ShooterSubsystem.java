@@ -1,4 +1,3 @@
-// Copyright (c) FIRST and other WPILib contributors.
 
 package frc.robot.subsystems;
 
