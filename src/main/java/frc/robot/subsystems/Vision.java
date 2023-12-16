@@ -28,12 +28,11 @@ import static frc.robot.Constants.VisionConstants.*;
 import frc.robot.Robot;
 
 
-
 public class Vision {
     private AprilTagFieldLayout kTagLayout = AprilTagFields.k2023ChargedUp.loadAprilTagLayoutField();
     private static PhotonCamera camera;
     private static PhotonPoseEstimator photonEstimator;
-    double lastEstTimestamp = 0;
+    static double lastEstTimestamp = 0;
     public Vision() {
         camera = new PhotonCamera(FRONT_CAMERA_NAME); // creating camera
         photonEstimator = new PhotonPoseEstimator(kTagLayout, PoseStrategy.MULTI_TAG_PNP_ON_COPROCESSOR, camera,
@@ -42,7 +41,7 @@ public class Vision {
 
     }
     // 1. getting position:
-    public Optional<EstimatedRobotPose> getEstimatedGlobalPose() {
+    public static Optional<EstimatedRobotPose> getEstimatedGlobalPose() {
         var visionEst = photonEstimator.update();
         double latestTimestamp = camera.getLatestResult().getTimestampSeconds();
         boolean newResult = Math.abs(latestTimestamp - lastEstTimestamp) > 1e-5;
@@ -53,11 +52,11 @@ public class Vision {
 
     // 2. The latest estimated robot pose on the field from vision data, location
     // update:
-    public PhotonPipelineResult getLatestResult() {
+    public static PhotonPipelineResult getLatestResult() {
         return camera.getLatestResult();
     }
     
-    public Matrix<N3, N1> getEstimationStdDevs(Pose2d estimatedPose) {
+    public static Matrix<N3, N1> getEstimationStdDevs(Pose2d estimatedPose) {
         var estStdDevs = kSingleTagStdDevs;
         var targets = getLatestResult().getTargets();
         int numTags = 0;
@@ -84,15 +83,14 @@ public class Vision {
         return estStdDevs;
     }
 
-    public double DistanceFromTarget(){
+    public static double DistanceFromTarget(){
         return PhotonUtils.getDistanceToPose(getEstimatedGlobalPose().get().estimatedPose.toPose2d(), target);
         
     }
 
-    public Rotation2d GetAngleFromTarget(){
+    public static Rotation2d GetAngleFromTarget(){
         return PhotonUtils.getYawToPose(getEstimatedGlobalPose().get().estimatedPose.toPose2d() , target);
         
 
     }
-    
 }
