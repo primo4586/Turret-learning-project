@@ -1,9 +1,9 @@
 // Copyright (c) FIRST and other WPILib contributors.
 // Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
 
 package frc.robot;
 
+import frc.robot.util.interpolation.InterpolationMap;
 import edu.wpi.first.apriltag.AprilTagFieldLayout;
 import edu.wpi.first.apriltag.AprilTagFields;
 import edu.wpi.first.math.Matrix;
@@ -30,7 +30,86 @@ import frc.robot.util.Conversions;
 public final class Constants {
   public static class OperatorConstants {
     public static final int kDriverControllerPort = 0;
+
   }
+  //constants for turrentShot subsystem
+  public static class ShooterConstants{
+    public static final int KShooterMotorID = 20;
+    public static final int KFeederMotorID = 20;
+
+    public static final int MotionMagicJerk = 50;
+    public static final int MotionMagicCruiseVelocity = 5;
+    public static final int MotionMagicAcceleration = 10;
+
+    public static final double PeakForwardVoltage = 11.5;
+    public static final double PeakReverseVoltage = -11.5;
+
+    public static final int SensorToMechanismRatio  = 50;
+
+    public static final int kP  = 24;
+    public static final double kD = 0.1;
+    public static final double kV = 0.12;
+    public static final double kS = 0.25;
+    
+    public static final int ShooterSpeed = 12700;
+    public static final int FeederSpeed = 2000;
+    public static final int MaxError = 13;
+    public static final double MaxTime = 3;
+
+    public static final InterpolationMap ShooterInterpolation = new InterpolationMap()
+                .put(1, 9)
+                .put(1.2, 9.2)
+                .put(1.4, 9.4)
+                .put(1.6, 9.6)
+                .put(1.8, 9.8)
+                .put(2, 10)
+                .put(2.1, 10.2);
+
+  }
+
+  public static class HoodConstants{
+
+    //technical Constants
+    public static final int HoodID = 1;
+    public static final int encoderCountsPerRevolution = 1024;
+    public static final double gearRatio = 50.0;
+    public static final double TICKS_PER_DEGREE = encoderCountsPerRevolution * gearRatio / 360.0;
+
+    //condition Costants
+    public static final double minimumError = 2.0;
+
+    //motionMagic Constants
+    public static final double mmCruise = 5;
+    public static final double mmAcceleration = 10;
+    public static final double mmJerk = 50;
+
+    public static final double kp = 24;
+    public static final double kd = 0.1;
+    public static final double ks = 24;
+    public static final double ka = 24;
+    public static final double kv = 24;
+
+    //MaxVol Constant
+    public static final double peekReverseVoltage = -11.5;
+    public static final double peekForwardVoltage = 11.5;
+
+    //Constant limit values 
+    public static final double forwardLimit = 300;
+    public static final double backwordLimit = 300;
+
+    //iterpolation map values
+    //To do: give noraml values
+    public static final InterpolationMap HOOD_VISION_MAP = new InterpolationMap()
+                .put(1, 14100)
+                .put(1.2, 13800)
+                .put(1.4, 12800)
+                .put(1.6, 12800)
+                .put(1.8, 12900)
+                .put(2, 13200)
+                .put(2.1, 13300);
+
+  }
+  
   public static class VisionConstants{
     public static final String FRONT_CAMERA_NAME = "FRONT CAMERA NAME";
     public static final AprilTagFieldLayout kTagLayout = AprilTagFields.kDefaultField.loadAprilTagLayoutField();
