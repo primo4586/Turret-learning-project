@@ -1,6 +1,5 @@
 // Copyright (c) FIRST and other WPILib contributors.
 // Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
 
 package frc.robot;
 
@@ -21,20 +20,24 @@ public final class Constants {
   public static class ShooterConstants{
     public static final int KShooterMotorID = 20;
     public static final int KFeederMotorID = 20;
+
     public static final int MotionMagicJerk = 50;
     public static final int MotionMagicCruiseVelocity = 5;
     public static final int MotionMagicAcceleration = 10;
+
     public static final double PeakForwardVoltage = 11.5;
     public static final double PeakReverseVoltage = -11.5;
+
     public static final int SensorToMechanismRatio  = 50;
+
     public static final int kP  = 24;
     public static final double kD = 0.1;
     public static final double kV = 0.12;
     public static final double kS = 0.25;
-    public static final double ShooterSpeed = 12700; // 13500
-
     
-
+    public static final int ShooterSpeed = 12700;
+    public static final int LimitSpeed = 13;
+    public static final double TimeLimit = 3;
 
   }
 }
