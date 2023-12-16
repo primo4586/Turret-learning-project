@@ -43,18 +43,19 @@ public class HoodSubsystem extends SubsystemBase {
     TalonFXConfiguration configuration = new TalonFXConfiguration();
     MotionMagicConfigs mm = new MotionMagicConfigs();
 
-    mm.MotionMagicCruiseVelocity = mmc;
-    mm.MotionMagicAcceleration = mma;
-    mm.MotionMagicJerk = mmj;
+    mm.MotionMagicCruiseVelocity = mmCruise;
+    mm.MotionMagicAcceleration = mmAcceleration;
+    mm.MotionMagicJerk = mmJerk;
     configuration.MotionMagic = mm;
 
     configuration.Slot0.kP = kp;
+    configuration.Slot0.kD = kd;
     configuration.Slot0.kS = ks;
     configuration.Slot0.kV = kv;
     configuration.Slot0.kS = ks;
 
-    configuration.Voltage.PeakForwardVoltage = peekFvol;
-    configuration.Voltage.PeakReverseVoltage = peekRvol;
+    configuration.Voltage.PeakForwardVoltage = peekForwardVoltage;
+    configuration.Voltage.PeakReverseVoltage = peekReverseVoltage;
 
     //forward and backword limits
     configuration.SoftwareLimitSwitch.ForwardSoftLimitEnable = true;
