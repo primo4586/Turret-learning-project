@@ -27,6 +27,14 @@ public final class Constants {
     public static final double PeakForwardVoltage = 11.5;
     public static final double PeakReverseVoltage = -11.5;
     public static final int SensorToMechanismRatio  = 50;
+    public static final int kP  = 24;
+    public static final double kD = 0.1;
+    public static final double kV = 0.12;
+    public static final double kS = 0.25;
+    public static final double ShooterSpeed = 12700; // 13500
+
+    
+
 
   }
 }
