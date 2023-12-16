@@ -2,6 +2,7 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.TalonSRXControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix6.StatusCode;
 import com.ctre.phoenix6.configs.MotionMagicConfigs;
@@ -74,8 +75,14 @@ public class ShooterSubsystem extends SubsystemBase {
   }
 
   //activate feeder motor
-  public void setFeederSpeed(double feederSpeed) {
-    this.m_shooterMotor.setControl(motionMagic.withVelocity(FeederSpeed));
+  public void setFeederSpeed(double speedPrecent) {
+    this.m_feederMotor.set(TalonSRXControlMode.PercentOutput, speedPrecent);
+    ;
+  }
+  
+  //activate shooter motor
+  public void setShooterSpeed(double speed) {
+    this.m_shooterMotor.setControl(motionMagic.withVelocity(speed));
   }
 
   public double getMotorSpeed() {
@@ -85,10 +92,6 @@ public class ShooterSubsystem extends SubsystemBase {
   public boolean checksIfAtSpeed() {
     return (Math.abs(m_shooterMotor.getClosedLoopError().getValue()) < MaxError);
 
-  }
-  //activate shooter motor
-  public void setShooterSpeed(double shooterSpeed) {
-    this.m_shooterMotor.setControl(motionMagic.withVelocity(shooterSpeed));
   }
 
   public double InterpolationValue(double distance){
