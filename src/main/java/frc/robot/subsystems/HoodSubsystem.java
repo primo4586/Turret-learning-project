@@ -92,15 +92,16 @@ public class HoodSubsystem extends SubsystemBase {
   }
 
   //Gets the HoodPose from distance through HOOD_VISION_MAP
-  public double PoseFromDis(double distance){
+  public double angleFromDistance(double distance){
     return InterpolateUtil.interpolate(HOOD_VISION_MAP, distance);
   }
+
   public void HoodPoseReset(){
     m_hoodMotor.setPosition(0);
   }
 
   @Override
   public void periodic() {
-    // This method will be called once per scheduler run
+    //This method will be called once per scheduler run
   }
 }
