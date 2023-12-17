@@ -8,11 +8,11 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.HoodSubsystem;
 import frc.robot.subsystems.Vision;
 
-public class AngleFromDistanceCommand extends Command {
+public class HoodAngleFromDistanceCommand extends Command {
   private final HoodSubsystem hoodSubsystem = HoodSubsystem.getInstance();
 
   /** Creates a new MoveHoodToCommand. */
-  public AngleFromDistanceCommand() {
+  public HoodAngleFromDistanceCommand() {
     addRequirements(hoodSubsystem);
     // Use addRequirements() here to declare subsystem dependencies.
   }
