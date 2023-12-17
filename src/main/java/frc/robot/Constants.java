@@ -131,6 +131,9 @@ public final class Constants {
     public static final double forwardLimit = 300;
     public static final double backwordLimit = 300;
 
+    // HoodPoseReset Constant
+    public static final double poseReset = 0.0;
+
     // iterpolation map values
     // To do: give noraml values
     public static final InterpolationMap HOOD_VISION_MAP = new InterpolationMap()

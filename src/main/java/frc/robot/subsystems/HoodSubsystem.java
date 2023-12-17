@@ -10,6 +10,7 @@ import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.controls.MotionMagicVoltage;
 import com.ctre.phoenix6.hardware.TalonFX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.commands.hoodCommands.HoodAngleFromDistanceCommand;
 import frc.robot.util.interpolation.InterpolateUtil;
 
 import static frc.robot.Constants.HoodConstants.*;
@@ -73,6 +74,7 @@ public class HoodSubsystem extends SubsystemBase {
       System.out.println("Hood could not apply config, error code:" + statusCode.toString());
 
     m_hoodMotor.setPosition(0);
+    this.setDefaultCommand(new HoodAngleFromDistanceCommand());
 
   }
 
@@ -97,7 +99,7 @@ public class HoodSubsystem extends SubsystemBase {
   }
 
   public void HoodPoseReset() {
-    m_hoodMotor.setPosition(0);
+    m_hoodMotor.setPosition(poseReset);
   }
 
   @Override
