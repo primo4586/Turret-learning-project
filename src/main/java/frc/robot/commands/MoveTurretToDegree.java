@@ -4,10 +4,10 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.subsystems.TurretSubsystem;
 
-public class MoveTurretToDegree extends Command {
+public class MoveTurretToDegree extends InstantCommand {
   private final TurretSubsystem turret = TurretSubsystem.getInstance();
   private double degree;
 
@@ -18,23 +18,6 @@ public class MoveTurretToDegree extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    turret.putTurretInPose(degree);
-  }
-
-  // Called every time the scheduler runs while the command is scheduled.
-  @Override
-  public void execute() {
-  }
-
-  // Called once the command ends or is interrupted.
-  @Override
-  public void end(boolean interrupted) {
-    turret.setSpeed(0);
-  }
-
-  // Returns true when the command should end.
-  @Override
-  public boolean isFinished() {
-    return turret.checkTurretPosition();
+    turret.putTurretInAngle(degree);
   }
 }

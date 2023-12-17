@@ -67,7 +67,7 @@ public class TurretSubsystem extends SubsystemBase {
   }
 
   // moves the turret to one place
-  public void putTurretInPose(double degree) {
+  public void putTurretInAngle(double degree) {
     m_motorTurret.setControl(motionMagic.withPosition(degree));
   }
 
@@ -78,10 +78,7 @@ public class TurretSubsystem extends SubsystemBase {
 
   // checks if the turret is in the right position
   public boolean checkTurretPosition() {
-    if (Math.abs(m_motorTurret.getClosedLoopError().getValue()) < minimumError) {
-      return true;
-    }
-    return false;
+    return Math.abs(m_motorTurret.getClosedLoopError().getValue()) < minimumError;
   }
 
   // manual turn for the turret

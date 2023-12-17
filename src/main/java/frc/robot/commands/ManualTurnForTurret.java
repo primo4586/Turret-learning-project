@@ -13,7 +13,7 @@ public class ManualTurnForTurret extends Command {
   private double speed;
 
   public ManualTurnForTurret(int vector, double speed) {
-    this.vector = vector; // vector is 1 or -1 for forward or backword
+    this.vector = vector; // vector is 1 or -1 for right or left
     this.speed = speed; // the speed of the motor
   }
 

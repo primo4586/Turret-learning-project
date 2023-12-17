@@ -21,7 +21,7 @@ public class TrackTargetWithTurret extends Command {
   @Override
   public void execute() {
     this.degree = 0; // TODO: add the visoin subsystem
-    turret.putTurretInPose(degree);
+    turret.putTurretInAngle(degree);
   }
 
   @Override
