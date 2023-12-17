@@ -11,6 +11,7 @@ public class ShooterSetSpeed extends InstantCommand {
   /** Creates a new ShooterSetSpeed. */
   private final ShooterSubsystem shooterSubsystem = ShooterSubsystem.getInstance();
   double speed;
+
   public ShooterSetSpeed(double speed) {
     this.addRequirements(shooterSubsystem);
     this.speed = speed;

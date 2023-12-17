@@ -15,9 +15,10 @@ import static frc.robot.Constants.Turret.*;
 public class TurretSubsystem extends SubsystemBase {
   private final MotionMagicVoltage motionMagic = new MotionMagicVoltage(0);
   private TalonFX m_motorTurret;
-  private static TurretSubsystem instance;
 
   // singleton
+  private static TurretSubsystem instance;
+
   public static TurretSubsystem getInstance() {
     if (instance == null) {
       instance = new TurretSubsystem();
@@ -59,7 +60,7 @@ public class TurretSubsystem extends SubsystemBase {
       }
     }
     if (!status.isOK()) {
-      System.out.println("Could not apply configs to turret, erro code: " + status.toString());
+      System.out.println("Turret could not apply configs, error code: " + status.toString());
     }
 
     // make sure we start at 0.

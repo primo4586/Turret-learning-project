@@ -49,13 +49,12 @@ public class InterpolateUtil {
      * @return The Y value for the X value between the 2 points, basically the
      *         missing Y coordinate
      */
-    private static double linearInterpolation(double x1, double y1,double x2, double y2, double xBetween) {
+    private static double linearInterpolation(double x1, double y1, double x2, double y2, double xBetween) {
 
-        double minX = Math.min(x1,x2), maxX = Math.max(x1,x2);
-        double minY = Math.min(y1,y2), maxY = Math.max(y1,y2);
+        double minX = Math.min(x1, x2), maxX = Math.max(x1, x2);
+        double minY = Math.min(y1, y2), maxY = Math.max(y1, y2);
 
-
-       return minY + ((maxY - minY) * (xBetween-minX))/(maxX - minX);
+        return minY + ((maxY - minY) * (xBetween - minX)) / (maxX - minX);
     }
 
 }

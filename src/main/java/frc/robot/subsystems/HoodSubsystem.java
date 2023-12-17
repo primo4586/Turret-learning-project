@@ -53,12 +53,11 @@ public class HoodSubsystem extends SubsystemBase {
     configuration.Voltage.PeakForwardVoltage = peekForwardVoltage;
     configuration.Voltage.PeakReverseVoltage = peekReverseVoltage;
 
-    //forward and backword limits
+    // forward and backword limits
     configuration.SoftwareLimitSwitch.ForwardSoftLimitEnable = true;
     configuration.SoftwareLimitSwitch.ForwardSoftLimitThreshold = forwardLimit;
     configuration.SoftwareLimitSwitch.ReverseSoftLimitEnable = true;
     configuration.SoftwareLimitSwitch.ReverseSoftLimitThreshold = backwordLimit;
-
 
     // set Ratio to 50:1
     configuration.Feedback.SensorToMechanismRatio = TICKS_PER_DEGREE;
@@ -71,37 +70,38 @@ public class HoodSubsystem extends SubsystemBase {
         break;
     }
     if (!statusCode.isOK())
-      System.out.println("Could not apply config to HoodSubsystem, error code:" + statusCode.toString());
+      System.out.println("Hood could not apply config, error code:" + statusCode.toString());
 
     m_hoodMotor.setPosition(0);
+
   }
 
-  //moving function for the Hood
-  public void moveHoodTo(double degrees){
+  // moving function for the Hood
+  public void moveHoodTo(double degrees) {
     m_hoodMotor.setControl(motionMagic.withPosition(degrees));
   }
 
-  //get function for the Hood pose
+  // get function for the Hood pose
   public double getHoodPose() {
     return m_hoodMotor.getPosition().getValue();
   }
-  
-  //Checking the degree difference conditions
+
+  // Checking the degree difference conditions
   public boolean isHoodReady() {
     return (Math.abs(m_hoodMotor.getClosedLoopError().getValue()) < minimumError);
   }
 
-  //Gets the HoodPose from distance through HOOD_VISION_MAP
-  public double angleFromDistance(double distance){
+  // Gets the HoodPose from distance through HOOD_VISION_MAP
+  public double angleFromDistance(double distance) {
     return InterpolateUtil.interpolate(HOOD_VISION_MAP, distance);
   }
 
-  public void HoodPoseReset(){
+  public void HoodPoseReset() {
     m_hoodMotor.setPosition(0);
   }
 
   @Override
   public void periodic() {
-    //This method will be called once per scheduler run
+    // This method will be called once per scheduler run
   }
 }

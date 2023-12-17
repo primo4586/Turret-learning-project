@@ -11,8 +11,8 @@ import frc.robot.subsystems.HoodSubsystem;
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class MoveHoodToCommand extends InstantCommand {
-    private final HoodSubsystem hoodSubsystem = HoodSubsystem.getInstance();
-    double angle;
+  private final HoodSubsystem hoodSubsystem = HoodSubsystem.getInstance();
+  double angle;
 
   public MoveHoodToCommand(double angle) {
     addRequirements(hoodSubsystem);

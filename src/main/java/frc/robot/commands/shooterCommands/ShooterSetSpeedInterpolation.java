@@ -7,8 +7,9 @@ package frc.robot.commands.shooterCommands;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.subsystems.Vision;
+
 public class ShooterSetSpeedInterpolation extends Command {
-private final ShooterSubsystem shooterSubsystem = ShooterSubsystem.getInstance();
+  private final ShooterSubsystem shooterSubsystem = ShooterSubsystem.getInstance();
 
   /** Creates a new ShooterSetSpeedInterpolation. */
   public ShooterSetSpeedInterpolation() {
@@ -24,13 +25,14 @@ private final ShooterSubsystem shooterSubsystem = ShooterSubsystem.getInstance()
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    //set shooter speed by interpolation
+    // set shooter speed by interpolation
     this.shooterSubsystem.setShooterSpeed(shooterSubsystem.InterpolationValue(Vision.DistanceFromTarget()));
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+  }
 
   // Returns true when the command should end.
   @Override

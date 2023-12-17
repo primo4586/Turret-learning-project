@@ -10,6 +10,7 @@ import frc.robot.subsystems.Vision;
 
 public class TrackTargetWithTurret extends Command {
   private final TurretSubsystem turret = TurretSubsystem.getInstance();
+
   public TrackTargetWithTurret() {
   }
 

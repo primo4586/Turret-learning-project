@@ -4,7 +4,6 @@
 
 package frc.robot.subsystems;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.photonvision.EstimatedRobotPose;
@@ -13,35 +12,25 @@ import org.photonvision.PhotonPoseEstimator;
 import org.photonvision.PhotonPoseEstimator.PoseStrategy;
 import org.photonvision.PhotonUtils;
 import org.photonvision.targeting.PhotonPipelineResult;
-import org.photonvision.targeting.TargetCorner;
-
-import edu.wpi.first.apriltag.AprilTagFieldLayout;
-import edu.wpi.first.apriltag.AprilTagFields;
 import edu.wpi.first.math.Matrix;
 import edu.wpi.first.math.VecBuilder;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
-import edu.wpi.first.math.geometry.Transform2d;
 import edu.wpi.first.math.numbers.N1;
 import edu.wpi.first.math.numbers.N3;
 import static frc.robot.Constants.VisionConstants.*;
-import frc.robot.Robot;
-
 
 public class Vision {
-    private static AprilTagFieldLayout kTagLayout = AprilTagFields.k2023ChargedUp.loadAprilTagLayoutField();
-    //private static PhotonCamera camera ;
+    private static PhotonCamera camera = new PhotonCamera(FRONT_CAMERA_NAME); // creating camera
     private static PhotonPoseEstimator photonEstimator;
     static double lastEstTimestamp = 0;
-    private static PhotonCamera camera = new PhotonCamera(FRONT_CAMERA_NAME); // creating camera
-    
-    
+
     // 1. getting position:
 
     public static Optional<EstimatedRobotPose> getEstimatedGlobalPose() {
         photonEstimator.setMultiTagFallbackStrategy(PoseStrategy.LOWEST_AMBIGUITY);
         photonEstimator = new PhotonPoseEstimator(kTagLayout, PoseStrategy.MULTI_TAG_PNP_ON_COPROCESSOR, camera,
-        kRobotToCam);
+                kRobotToCam);
         var visionEst = photonEstimator.update();
         double latestTimestamp = camera.getLatestResult().getTimestampSeconds();
         boolean newResult = Math.abs(latestTimestamp - lastEstTimestamp) > 1e-5;
@@ -55,7 +44,7 @@ public class Vision {
     public static PhotonPipelineResult getLatestResult() {
         return camera.getLatestResult();
     }
-    
+
     public static Matrix<N3, N1> getEstimationStdDevs(Pose2d estimatedPose) {
         var estStdDevs = kSingleTagStdDevs;
         var targets = getLatestResult().getTargets();
@@ -83,14 +72,13 @@ public class Vision {
         return estStdDevs;
     }
 
-    public static double DistanceFromTarget(){
+    public static double DistanceFromTarget() {
         return PhotonUtils.getDistanceToPose(getEstimatedGlobalPose().get().estimatedPose.toPose2d(), target);
-        
+
     }
 
-    public static Rotation2d GetAngleFromTarget(){
-        return PhotonUtils.getYawToPose(getEstimatedGlobalPose().get().estimatedPose.toPose2d() , target);
-        
+    public static Rotation2d GetAngleFromTarget() {
+        return PhotonUtils.getYawToPose(getEstimatedGlobalPose().get().estimatedPose.toPose2d(), target);
 
     }
 }

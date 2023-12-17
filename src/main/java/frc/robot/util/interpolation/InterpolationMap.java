@@ -3,12 +3,14 @@ package frc.robot.util.interpolation;
 import java.util.HashMap;
 
 /**
- * Represents a map of data to interpolated from to, (Shooter speeds for specific distances, etc.)
+ * Represents a map of data to interpolated from to, (Shooter speeds for
+ * specific distances, etc.)
+ * 
  * @see InterpolateUtil
  */
 public class InterpolationMap {
-    
-    private HashMap<Double,Double> dataPoints; 
+
+    private HashMap<Double, Double> dataPoints;
 
     public InterpolationMap() {
         this.dataPoints = new HashMap<>();

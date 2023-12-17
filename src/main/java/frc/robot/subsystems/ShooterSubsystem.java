@@ -74,12 +74,12 @@ public class ShooterSubsystem extends SubsystemBase {
     this.setDefaultCommand(new ShooterSetSpeed(ShooterIdleSpeed));
   }
 
-  //activate feeder motor
+  // activate feeder motor
   public void setFeederSpeed(double speedPrecent) {
     this.m_feederMotor.set(TalonSRXControlMode.PercentOutput, speedPrecent);
   }
-  
-  //activate shooter motor
+
+  // activate shooter motor
   public void setShooterSpeed(double speed) {
     this.m_shooterMotor.setControl(motionMagic.withVelocity(speed));
   }
@@ -93,7 +93,7 @@ public class ShooterSubsystem extends SubsystemBase {
 
   }
 
-  public double InterpolationValue(double distance){
+  public double InterpolationValue(double distance) {
     return InterpolateUtil.interpolate(ShooterInterpolation, distance);
   }
 
