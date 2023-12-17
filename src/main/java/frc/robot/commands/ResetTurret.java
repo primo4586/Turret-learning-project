@@ -11,17 +11,15 @@ import frc.robot.subsystems.TurretSubsystem;
 
 public class ResetTurret extends InstantCommand {
   private final TurretSubsystem turret = TurretSubsystem.getInstance();
-  private double degree;
 
   public ResetTurret() {
     this.addRequirements(turret);
-    this.degree = TurretResetDegree;
 
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    turret.putTurretInAngle(degree);
+    turret.putTurretInAngle(TurretResetDegree);
   }
 }

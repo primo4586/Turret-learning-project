@@ -6,11 +6,10 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.TurretSubsystem;
+import frc.robot.subsystems.Vision;
 
 public class TrackTargetWithTurret extends Command {
   private final TurretSubsystem turret = TurretSubsystem.getInstance();
-  private double degree;
-
   public TrackTargetWithTurret() {
   }
 
@@ -20,13 +19,11 @@ public class TrackTargetWithTurret extends Command {
 
   @Override
   public void execute() {
-    this.degree = 0; // TODO: add the visoin subsystem
-    turret.putTurretInAngle(degree);
+    turret.putTurretInAngle(Vision.GetAngleFromTarget().getDegrees());
   }
 
   @Override
   public void end(boolean interrupted) {
-    turret.setSpeed(0);
   }
 
   @Override
